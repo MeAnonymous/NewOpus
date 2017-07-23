@@ -15,9 +15,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        o=new OMng(this);
-        sb=o.open();
-        Intent i =new Intent(this,Log.class);
+        o = new OMng(this);
+        sb = o.open();
+        Intent i = new Intent(this,Log.class);
         startActivity(i);
 
         //Bonjour ca va?
