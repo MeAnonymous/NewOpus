@@ -20,6 +20,6 @@ public class MainActivity extends AppCompatActivity {
         Intent i =new Intent(this,Log.class);
         startActivity(i);
 
-        //hello
+        //hello boy
     }
 }
