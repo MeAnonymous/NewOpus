@@ -20,21 +20,21 @@ public class OHelp extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(OCons.LQuery);
-        Toast.makeText(context, "Login", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "Login created", Toast.LENGTH_SHORT).show();
         db.execSQL(OCons.CQuery);
-        Toast.makeText(context, "Cat", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "Cat created", Toast.LENGTH_SHORT).show();
         db.execSQL(OCons.BQuery);
-        Toast.makeText(context, "Book", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "Book created", Toast.LENGTH_SHORT).show();
         db.execSQL(OCons.MQuery);
-        Toast.makeText(context, "Member", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "Member created", Toast.LENGTH_SHORT).show();
         db.execSQL(OCons.IQuery);
-        Toast.makeText(context, "Issue", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "Issue created", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL(OCons.LQuery);
-        Toast.makeText(context, "Login", Toast.LENGTH_SHORT).show();
+       // db.execSQL(OCons.LQuery);
+        //Toast.makeText(context, "Login", Toast.LENGTH_SHORT).show();
 
     }
 }

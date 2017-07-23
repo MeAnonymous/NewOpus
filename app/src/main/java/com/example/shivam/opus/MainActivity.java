@@ -1,3 +1,4 @@
+//This activity is intended to create all the tables, only.
 package com.example.shivam.opus;
 
 import android.content.Intent;
@@ -17,9 +18,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         o = new OMng(this);
         sb = o.open();
-        Intent i = new Intent(this,Log.class);
+        Intent i = new Intent(this, Log.class);
         startActivity(i);
-
-        //Bonjour ca va?
     }
 }
