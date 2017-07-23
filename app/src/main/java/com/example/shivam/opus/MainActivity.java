@@ -19,5 +19,7 @@ public class MainActivity extends AppCompatActivity {
         sb=o.open();
         Intent i =new Intent(this,Log.class);
         startActivity(i);
+
+        //hello
     }
 }
