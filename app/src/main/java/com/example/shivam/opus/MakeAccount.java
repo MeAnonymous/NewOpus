@@ -15,7 +15,7 @@ public class MakeAccount extends AppCompatActivity {
         //Enable actionbar to display custom_bar
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         //To really display our own custom_bar
-        getSupportActionBar().setCustomView(R.layout.custom_ab);
+        getSupportActionBar().setCustomView(R.layout.custom_ab1);
 
         setContentView(R.layout.activity_make_account);
         //Use shared preferences to check if this is the first time a user has opened the app on his phone

@@ -26,7 +26,7 @@ public class Log extends AppCompatActivity {
         //Enable actionbar to display custom_bar
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         //To really display our own custom_bar
-        getSupportActionBar().setCustomView(R.layout.custom_ab);
+        getSupportActionBar().setCustomView(R.layout.custom_ab1);
 
         setContentView(R.layout.activity_log2);
         e1=(EditText)findViewById(R.id.UserId);

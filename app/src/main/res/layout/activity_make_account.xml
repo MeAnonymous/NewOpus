@@ -4,6 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.shivam.opus.MakeAccount">
+    tools:context="com.example.shivam.opus.MakeAccount"
+    android:orientation="vertical">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="125dp"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hey there!\nLet's get started..."
+        android:gravity="center"
+        android:textColor="#333"
+        android:textSize="24dp"
+        android:layout_gravity="center"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:background="#333"
+        android:onClick="make"
+        android:text="Make Account"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:textColor="#fff"/>
+</LinearLayout>
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="300dp"
+        android:src="@drawable/cartoon"
+        android:layout_gravity="center"
+        android:layout_marginRight="7dp"/>
 
 </LinearLayout>
