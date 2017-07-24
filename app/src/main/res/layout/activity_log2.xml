@@ -22,12 +22,10 @@
                 android:id="@+id/UserId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#333"
                 android:ems="10"
                 android:gravity="center"
                 android:hint="Enter ID"
-                android:inputType="text"
-                android:textColorHint="#333" />
+                android:inputType="text" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -39,12 +37,10 @@
                 android:id="@+id/UserPass"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#333"
                 android:ems="10"
                 android:gravity="center"
                 android:hint="Password"
-                android:inputType="numberPassword"
-                android:textColorHint="#333" />
+                android:inputType="numberPassword" />
         </android.support.design.widget.TextInputLayout>
 
         <Button
