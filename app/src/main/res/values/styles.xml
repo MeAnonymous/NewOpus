@@ -11,6 +11,7 @@
     <style name="CustomTheme" parent="Theme.AppCompat.Light">
         <item name="contentInsetStart">0dp</item>
         <item name="contentInsetEnd">0dp</item>
+        <item name="android:background">#ffffff</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
