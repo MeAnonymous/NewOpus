@@ -15,18 +15,35 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"></activity>
-
-        <activity android:name=".Log"
+        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".Log"
             android:label="@string/title_activity_log" />
-
-        <activity android:name=".SplashScreen"
+        <activity
+            android:name=".SplashScreen"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MakeAccount" />
+        <activity android:name=".AddCategory" />
+        <activity android:name=".AddBooks" />
+        <activity
+            android:name=".Main"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".UpdateBooks" />
+        <activity android:name=".DeleteBooks" />
+        <activity android:name=".SearchBooks" />
+        <activity android:name=".AddMembers" />
+        <activity android:name=".UpdateMembers" />
+        <activity android:name=".DeleteMembers" />
+        <activity android:name=".CreateHelper" />
+        <activity android:name=".ContactCustomer" />
+        <activity android:name=".RentBooks"></activity>
     </application>
 
 </manifest>

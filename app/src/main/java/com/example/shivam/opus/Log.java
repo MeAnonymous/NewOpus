@@ -30,13 +30,18 @@ public class Log extends AppCompatActivity {
         String id=e1.getText().toString();
         String pass=e2.getText().toString();
         String type="Shopkeeper";
+        String type2 = "Helper";
         ContentValues cv= new ContentValues();
         cv.put(OCons.UId,id);
         cv.put(OCons.UPass,pass);
         cv.put(OCons.UType,type);
-        Long l=sb.insert(OCons.LTable,null,cv);
+        //if this activity gets called by mainmenu activity for helper account
+        //*** cv.put(OCons.UType,type1);
+        //firt we need to check whether UID is already inserted or not
+        //*** code will go here
+        //else
+            Long l=sb.insert(OCons.LTable,null,cv);
         if(l>0)
             Toast.makeText(this, "Welcome Admin", Toast.LENGTH_SHORT).show();
-
     }
 }
