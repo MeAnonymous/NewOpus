@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -69,12 +67,10 @@ public class Main extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        //.............this is what i did
 
-       /* if(id==R.id.addcat){
-            Toast.makeText(this, "clickedd", Toast.LENGTH_SHORT).show();
+        if(id==R.id.addcat){
             Intent i=new Intent(this,AddCategory.class);
-            startActivity(i);}*/
+            startActivity(i);}
 
         /* else if (id == R.id.nav_gallery) {
 
