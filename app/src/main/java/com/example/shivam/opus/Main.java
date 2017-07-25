@@ -1,5 +1,6 @@
 package com.example.shivam.opus;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -139,12 +141,22 @@ public class Main extends AppCompatActivity
         return true;
     }
     public void logout(View v){
-        //Wanna use a toast somewhere? Just copy all the lines below and replace "Logout" with your message.
-        Toast toast = Toast.makeText(this, "Logout", Toast.LENGTH_SHORT);
-        TextView tv = (TextView) toast.getView().findViewById(android.R.id.message);
-        tv.setBackgroundColor(Color.alpha(0));
-        tv.setTextColor(Color.WHITE);
-        toast.show();
+        AlertDialog.Builder ad = new AlertDialog.Builder(this);
+        ad.setTitle("Do you want to logout?");
+        ad.setMessage("");
+        ad.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent i = new Intent(Main.this, Log.class);
+                Bundle bundle = ActivityOptionsCompat.makeCustomAnimation(Main.this,
+                        android.R.anim.fade_in, android.R.anim.fade_out).toBundle();
+                startActivity(i, bundle);
+            }
+        });
+        ad.setNegativeButton("No", null);
+        AlertDialog adb = ad.create();
+        adb.show();
     }
     public void pullout(View v){
         //Toggle drawer open and close event on hamburger icon when a user taps on it.
@@ -183,4 +195,10 @@ public class Main extends AppCompatActivity
                 android.R.anim.fade_in, android.R.anim.fade_out).toBundle();
         startActivity(i, bundle);
     }
+    /*Wanna use a toast somewhere? Just copy all the lines below and replace "Logout" with your message.
+    Toast toast = Toast.makeText(this, "Logout", Toast.LENGTH_SHORT);
+    TextView tv = (TextView) toast.getView().findViewById(android.R.id.message);
+        tv.setBackgroundColor(Color.alpha(0));
+        tv.setTextColor(Color.WHITE);
+        toast.show();*/
 }
