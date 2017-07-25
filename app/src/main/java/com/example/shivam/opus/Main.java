@@ -3,7 +3,10 @@ package com.example.shivam.opus;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -62,6 +65,7 @@ public class Main extends AppCompatActivity
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -70,7 +74,10 @@ public class Main extends AppCompatActivity
 
         if(id==R.id.addcat){
             Intent i=new Intent(this,AddCategory.class);
-            startActivity(i);}
+            Bundle bundle = ActivityOptionsCompat.makeCustomAnimation(this,
+                    android.R.anim.fade_in, android.R.anim.fade_out).toBundle(); //fadeIN effect.
+            startActivity(i, bundle);
+        }
 
         /* else if (id == R.id.nav_gallery) {
 
