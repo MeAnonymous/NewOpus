@@ -1,8 +1,13 @@
 package com.example.shivam.opus;
 
+import android.content.Intent;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.view.WindowManager;
 
 public class AddBooks extends AppCompatActivity {
@@ -19,5 +24,12 @@ public class AddBooks extends AppCompatActivity {
 
         setContentView(R.layout.activity_add_books);
         //call this activity after AddCategory, if this the user's first time
+    }
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public void done(View v){
+        Intent i=new Intent(this,Main.class);
+        Bundle bundle = ActivityOptionsCompat.makeCustomAnimation(this,
+                android.R.anim.fade_in, android.R.anim.fade_out).toBundle();
+        startActivity(i, bundle);
     }
 }

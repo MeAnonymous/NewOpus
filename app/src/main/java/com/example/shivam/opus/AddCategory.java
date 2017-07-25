@@ -1,7 +1,11 @@
 package com.example.shivam.opus;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -34,7 +38,7 @@ public class AddCategory extends AppCompatActivity {
         e1=(EditText)findViewById(R.id.txtcid);
         e2=(EditText)findViewById(R.id.txtcname);
     }
-    public void done(View v){
+    public void addcat(View v){
         String id=e1.getText().toString();
         String name=e2.getText().toString();
         ContentValues cv=new ContentValues();
@@ -43,6 +47,12 @@ public class AddCategory extends AppCompatActivity {
         long l=sb.insert(OCons.CTable,null,cv);
         if(l>0)
             Toast.makeText(this, "AddedCategory", Toast.LENGTH_SHORT).show();
-
+    }
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public void done(View v){
+        Intent i=new Intent(this,Main.class);
+        Bundle bundle = ActivityOptionsCompat.makeCustomAnimation(this,
+                android.R.anim.fade_in, android.R.anim.fade_out).toBundle();
+        startActivity(i, bundle);
     }
 }
