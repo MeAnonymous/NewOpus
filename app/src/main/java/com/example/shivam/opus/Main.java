@@ -1,5 +1,7 @@
 package com.example.shivam.opus;
 
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -18,9 +20,12 @@ import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.shivam.opus.dbutil.OMng;
+
 public class Main extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    OMng o;
+    SQLiteDatabase sb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +46,12 @@ public class Main extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+
+            o = new OMng(this);
+            sb = o.open();
+
     }
 
     @Override
@@ -58,10 +69,14 @@ public class Main extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        //.............this is what i did
 
-        /*if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+       /* if(id==R.id.addcat){
+            Toast.makeText(this, "clickedd", Toast.LENGTH_SHORT).show();
+            Intent i=new Intent(this,AddCategory.class);
+            startActivity(i);}*/
+
+        /* else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
 

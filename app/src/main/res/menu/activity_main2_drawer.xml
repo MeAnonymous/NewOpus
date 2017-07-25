@@ -5,7 +5,8 @@
         <item
             android:id="@+id/addcat"
             android:icon="@drawable/ic_add_circle_black_24dp"
-            android:title="Add Category" />
+            android:title="Add Category"
+            />
         <item
             android:id="@+id/addbooks"
             android:icon="@drawable/ic_add_circle_black_24dp"
