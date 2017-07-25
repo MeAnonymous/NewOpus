@@ -31,7 +31,8 @@
             android:textSize="26dp"
             android:gravity="bottom|center"
             android:paddingBottom="10dp"
-            android:textColor="#333"/>
+            android:textColor="#333"
+            android:onClick="rent"/>
         <Button
             android:layout_width="140dp"
             android:layout_height="218dp"
@@ -48,7 +49,8 @@
             android:textSize="26dp"
             android:gravity="bottom|center"
             android:paddingBottom="10dp"
-            android:textColor="#333"/>
+            android:textColor="#333"
+            android:onClick="searchBooks"/>
         <Button
             android:layout_width="140dp"
             android:layout_height="218dp"
@@ -65,7 +67,8 @@
             android:textSize="26dp"
             android:gravity="bottom|center"
             android:paddingBottom="10dp"
-            android:textColor="#333"/>
+            android:textColor="#333"
+            android:onClick="addBooks"/>
         <Button android:layout_width="140dp"
             android:layout_height="218dp"
             android:text="Add\nMembers"
@@ -84,7 +87,8 @@
             android:gravity="bottom|center"
             android:paddingBottom="10dp"
             android:textColor="#333"
-            android:id="@+id/button5" />
+            android:id="@+id/button5"
+            android:onClick="addMembers"/>
 
         <ImageView
             android:layout_width="90dp"

@@ -71,21 +71,68 @@ public class Main extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
+        Intent i;
         if(id==R.id.addcat){
-            Intent i=new Intent(this,AddCategory.class);
+            i = new Intent(this,AddCategory.class);
             Bundle bundle = ActivityOptionsCompat.makeCustomAnimation(this,
-                    android.R.anim.fade_in, android.R.anim.fade_out).toBundle(); //fadeIN effect.
+                    android.R.anim.fade_in, android.R.anim.fade_out).toBundle();
             startActivity(i, bundle);
         }
+        else if (id == R.id.addbooks) {
+            i = new Intent(this,AddBooks.class);
+            Bundle bundle = ActivityOptionsCompat.makeCustomAnimation(this,
+                    android.R.anim.fade_in, android.R.anim.fade_out).toBundle();
+            startActivity(i, bundle);
 
-        /* else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.updatebooks) {
+            i = new Intent(this,UpdateBooks.class);
+            Bundle bundle = ActivityOptionsCompat.makeCustomAnimation(this,
+                    android.R.anim.fade_in, android.R.anim.fade_out).toBundle();
+            startActivity(i, bundle);
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.deletebooks) {
+            i = new Intent(this,DeleteBooks.class);
+            Bundle bundle = ActivityOptionsCompat.makeCustomAnimation(this,
+                    android.R.anim.fade_in, android.R.anim.fade_out).toBundle();
+            startActivity(i, bundle);
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.searchbooks) {
+            i = new Intent(this,SearchBooks.class);
+            Bundle bundle = ActivityOptionsCompat.makeCustomAnimation(this,
+                    android.R.anim.fade_in, android.R.anim.fade_out).toBundle();
+            startActivity(i, bundle);
 
-        }*/
+        } else if (id == R.id.addmembers) {
+            i = new Intent(this,AddMembers.class);
+            Bundle bundle = ActivityOptionsCompat.makeCustomAnimation(this,
+                    android.R.anim.fade_in, android.R.anim.fade_out).toBundle();
+            startActivity(i, bundle);
+
+        } else if (id == R.id.updatemembers) {
+            i = new Intent(this,UpdateMembers.class);
+            Bundle bundle = ActivityOptionsCompat.makeCustomAnimation(this,
+                    android.R.anim.fade_in, android.R.anim.fade_out).toBundle();
+            startActivity(i, bundle);
+
+        } else if (id == R.id.deletemembers) {
+            i = new Intent(this,DeleteMembers.class);
+            Bundle bundle = ActivityOptionsCompat.makeCustomAnimation(this,
+                    android.R.anim.fade_in, android.R.anim.fade_out).toBundle();
+            startActivity(i, bundle);
+
+        } else if (id == R.id.createhelper) {
+            i = new Intent(this,CreateHelper.class);
+            Bundle bundle = ActivityOptionsCompat.makeCustomAnimation(this,
+                    android.R.anim.fade_in, android.R.anim.fade_out).toBundle();
+            startActivity(i, bundle);
+
+        } else if (id == R.id.contactcustomer) {
+            i = new Intent(this, ContactCustomer.class);
+            Bundle bundle = ActivityOptionsCompat.makeCustomAnimation(this,
+                    android.R.anim.fade_in, android.R.anim.fade_out).toBundle();
+            startActivity(i, bundle);
+
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -107,5 +154,33 @@ public class Main extends AppCompatActivity
         } else {
             drawer.openDrawer(GravityCompat.START);
         }
+    }
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public void rent(View v){
+        Intent i = new Intent(this, RentBooks.class);
+        Bundle bundle = ActivityOptionsCompat.makeCustomAnimation(this,
+                android.R.anim.fade_in, android.R.anim.fade_out).toBundle();
+        startActivity(i, bundle);
+    }
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public void searchBooks(View v){
+        Intent i = new Intent(this, SearchBooks.class);
+        Bundle bundle = ActivityOptionsCompat.makeCustomAnimation(this,
+                android.R.anim.fade_in, android.R.anim.fade_out).toBundle();
+        startActivity(i, bundle);
+    }
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public void addBooks(View v){
+        Intent i = new Intent(this, AddBooks.class);
+        Bundle bundle = ActivityOptionsCompat.makeCustomAnimation(this,
+                android.R.anim.fade_in, android.R.anim.fade_out).toBundle();
+        startActivity(i, bundle);
+    }
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public void addMembers(View v){
+        Intent i = new Intent(this, AddMembers.class);
+        Bundle bundle = ActivityOptionsCompat.makeCustomAnimation(this,
+                android.R.anim.fade_in, android.R.anim.fade_out).toBundle();
+        startActivity(i, bundle);
     }
 }

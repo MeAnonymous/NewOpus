@@ -24,11 +24,4 @@ public class SearchBooks extends AppCompatActivity {
 
         setContentView(R.layout.activity_search_books);
     }
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public void done(View v){
-        Intent i=new Intent(this,Main.class);
-        Bundle bundle = ActivityOptionsCompat.makeCustomAnimation(this,
-                android.R.anim.fade_in, android.R.anim.fade_out).toBundle();
-        startActivity(i, bundle);
-    }
 }
