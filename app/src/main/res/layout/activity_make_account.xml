@@ -27,6 +27,7 @@
         android:background="#333"
         android:onClick="make"
         android:text="Make Account"
+        android:textSize="20dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:textColor="#fff"/>

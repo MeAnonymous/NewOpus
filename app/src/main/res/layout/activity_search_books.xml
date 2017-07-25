@@ -4,6 +4,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.shivam.opus.SearchBooks">
+    tools:context="com.example.shivam.opus.SearchBooks"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Order by:"
+            android:gravity="center"
+            android:textSize="22dp"
+            android:textColor="#333"/>
+
+        <Spinner
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.6"
+            android:id="@+id/spcat"
+            android:gravity="center"></Spinner>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="20dp">
+
+       <ImageButton
+           android:layout_width="60dp"
+           android:layout_height="60dp"
+           android:background="@drawable/ic_search_black_24dp"
+           android:onClick="search"
+           android:layout_marginRight="15dp"/>
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="45dp"
+            android:text="All"
+            android:background="#333"
+            android:textColor="#fff"
+            android:textSize="20dp"
+            android:onClick="searchAll"/>
+
+    </LinearLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lv"></ListView>
+
 
 </LinearLayout>

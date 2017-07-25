@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <Button
+        android:id="@+id/btnham"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/ic_menu_black_24dp"
+        android:onClick="pullout" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Opus"
+        android:textColor="#333333"
+        android:background="#fff"
+        android:id="@+id/title"
+        android:textSize="28sp"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/btnlog"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/ic_power_settings_new_black_24dp"
+        android:onClick="logout" />
+
+
+</RelativeLayout>
