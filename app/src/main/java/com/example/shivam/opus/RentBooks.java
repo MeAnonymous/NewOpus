@@ -66,7 +66,7 @@ public class RentBooks extends AppCompatActivity {
         cv.put(OCons.IRentDate,System.currentTimeMillis());
         cv.put(OCons.IReturnDate,System.currentTimeMillis()+864000000);
         cv.put(OCons.ITCost,"null");
-       
+
         long l=sb.insert(OCons.ITable,null,cv);
         if(l>0){
             Toast.makeText(this, "created rent", Toast.LENGTH_SHORT).show();
