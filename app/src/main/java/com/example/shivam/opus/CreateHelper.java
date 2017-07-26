@@ -1,7 +1,12 @@
 package com.example.shivam.opus;
 
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -11,10 +16,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.shivam.opus.dbutil.OCons;
+import com.example.shivam.opus.dbutil.OMng;
 
 public class CreateHelper extends AppCompatActivity {
-
-
+    OMng o;
+    SQLiteDatabase sb;
+    EditText e1,e2;
+    Intent i;
+    TextView tv;
+    Toast toast;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +41,32 @@ public class CreateHelper extends AppCompatActivity {
         getSupportActionBar().setCustomView(R.layout.custom_ab);
 
         setContentView(R.layout.activity_create_helper);
+        e1=(EditText)findViewById(R.id.UserId);
+        e2=(EditText)findViewById(R.id.UserPass);
+        o=new OMng(this);
+        sb=o.open();
     }
+    public void submit(View v){
+        String id = e1.getText().toString();
+        String pass = e2.getText().toString();
+        SharedPreferences sharedPrefs = getSharedPreferences("myFile", MODE_PRIVATE);
+        SharedPreferences.Editor ed;
+        ed = sharedPrefs.edit();
+        String type="Helper"; //Add Helper
+        ContentValues cv= new ContentValues();
+        cv.put(OCons.UId,id);
+        cv.put(OCons.UPass,pass);
+        cv.put(OCons.UType,type);
+        Long l=sb.insert(OCons.LTable, null, cv);
+            if(l>0){
+                toast =  Toast.makeText(this, "Helper Added", Toast.LENGTH_SHORT);
+                tv = (TextView) toast.getView().findViewById(android.R.id.message);
+                tv.setBackgroundColor(Color.alpha(0));
+                tv.setTextColor(Color.WHITE);
+                toast.show();
+            }
+        }
+
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public void done(View v){
         Intent i=new Intent(this,Main.class);

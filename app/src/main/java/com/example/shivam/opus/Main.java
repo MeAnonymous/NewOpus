@@ -132,10 +132,19 @@ public class Main extends AppCompatActivity
             startActivity(i, bundle);
 
         } else if (id == R.id.createhelper) {
-            i = new Intent(this,CreateHelper.class);
-            Bundle bundle = ActivityOptionsCompat.makeCustomAnimation(this,
-                    android.R.anim.fade_in, android.R.anim.fade_out).toBundle();
-            startActivity(i, bundle);
+            if(sharedPrefs.getInt("usertype", 0) == 1) {
+                i = new Intent(this, CreateHelper.class);
+                Bundle bundle = ActivityOptionsCompat.makeCustomAnimation(this,
+                        android.R.anim.fade_in, android.R.anim.fade_out).toBundle();
+                startActivity(i, bundle);
+            }
+            else{
+                toast = Toast.makeText(this, "You are not authorised", Toast.LENGTH_SHORT);
+                tv = (TextView) toast.getView().findViewById(android.R.id.message);
+                tv.setBackgroundColor(Color.alpha(0));
+                tv.setTextColor(Color.WHITE);
+                toast.show();
+            }
 
         } else if (id == R.id.contactcustomer) {
             if(sharedPrefs.getInt("usertype", 0) == 1) {
@@ -199,8 +208,8 @@ public class Main extends AppCompatActivity
         startActivity(i, bundle);
     }
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public void addBooks(View v){
-        Intent i = new Intent(this, AddBooks.class);
+    public void returnBooks(View v){
+        Intent i = new Intent(this, ReturnBooks.class);
         Bundle bundle = ActivityOptionsCompat.makeCustomAnimation(this,
                 android.R.anim.fade_in, android.R.anim.fade_out).toBundle();
         startActivity(i, bundle);
