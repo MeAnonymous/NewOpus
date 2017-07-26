@@ -31,7 +31,7 @@ public class AddBooks extends AppCompatActivity implements AdapterView.OnItemSel
     OMng o;
     EditText e1,e2,e3;
     Spinner c;
-    String label
+    String label;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
