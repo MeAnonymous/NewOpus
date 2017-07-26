@@ -47,7 +47,8 @@ public class ReturnBooks extends AppCompatActivity {
         String mid=e2.getText().toString();
         Cursor c=sb.rawQuery("SEARCH DateOfReturn FROM Issue WHERE MemberId=\""+mid+"\"",null);
         if (c != null && c.moveToFirst()) {
-            long returndate = c.getLong(c.getColumnIndex(---));
+            
+
             c.close();
         }
     }

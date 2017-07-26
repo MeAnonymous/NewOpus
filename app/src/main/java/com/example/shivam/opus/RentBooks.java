@@ -52,19 +52,23 @@ public class RentBooks extends AppCompatActivity {
     public void rentBooks(View v) {
         String bid = e1.getText().toString();//bookid
         String mid = e2.getText().toString();//memberid
-        String b = null;//catid
+        String b = null;
+        int d=0;//catid
         Cursor c = sb.rawQuery("SELECT BCatID FROM Book WHERE BookID=\"" + bid + "\"", null);
         if (c != null && c.moveToFirst()) {
             b = c.getString(c.getColumnIndex(OCons.BCId));
+            d=  c.getInt(c.getColumnIndex(OCons.BRCopies));
             c.close();
         }
+        if(d>=0)//if remaining copies are zero then we can rent else not
+        {
         ContentValues cv = new ContentValues();
         cv.put(OCons.IBId, bid);
         cv.put(OCons.IMId, mid);
         cv.put(OCons.ICID, b);
         cv.put(OCons.IRentDate, System.currentTimeMillis());
         cv.put(OCons.IReturnDate, System.currentTimeMillis() + 864000000);
-        cv.put(OCons.ITCost, "null");
+        cv.put(OCons.ITCost,100);
 
         long l = sb.insert(OCons.ITable, null, cv);
         if (l > 0) {
@@ -73,7 +77,19 @@ public class RentBooks extends AppCompatActivity {
             tv.setBackgroundColor(Color.alpha(0));
             tv.setTextColor(Color.WHITE);
             toast.show();
+
         }
+        d--;
+            String args[]={bid};
+            cv.put(OCons.BRCopies,d);
+            long r=sb.update(OCons.BTable,cv,OCons.BId+"=?",args);
+            if(r>0)
+                Toast.makeText(this, "reduced", Toast.LENGTH_SHORT).show();
+
+
+    }
+    else
+            Toast.makeText(this, "cannot rent the book", Toast.LENGTH_SHORT).show();
     }
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public void done(View v){
