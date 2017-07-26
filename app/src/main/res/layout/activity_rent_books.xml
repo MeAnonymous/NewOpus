@@ -16,13 +16,7 @@
         android:gravity="center"
         android:textSize="26dp"
         android:textColor="#333"/>
-    <Spinner
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:id="@+id/spcat"
-        android:layout_marginTop="20dp"></Spinner>
+
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="wrap_content"

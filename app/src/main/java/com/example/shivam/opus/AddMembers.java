@@ -69,7 +69,7 @@ public class AddMembers extends AppCompatActivity  {
         cv.put(OCons.MFee,fee);
         long l=sb.insert(OCons.MTable,null,cv);
         if(l>0)
-            Toast.makeText(this, "printtttt", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Member Added", Toast.LENGTH_SHORT).show();
     }
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public void done(View v){

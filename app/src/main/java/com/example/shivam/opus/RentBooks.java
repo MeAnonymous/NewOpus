@@ -1,5 +1,6 @@
 package com.example.shivam.opus;
 
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -55,7 +56,20 @@ public class RentBooks extends AppCompatActivity {
         Cursor c=sb.rawQuery("SELECT BCatID FROM Books WHERE BookID=\""+bid+"\"", null);
         if (c != null && c.moveToFirst()) {
             b = c.getString(c.getColumnIndex(OCons.BCId));
-            c.close();
+           c.close();}
+        
+
+        ContentValues cv= new ContentValues();
+        cv.put(OCons.IBId,bid);
+        cv.put(OCons.IMId,mid);
+        cv.put(OCons.ICID,b);
+        cv.put(OCons.IRentDate,System.currentTimeMillis());
+        cv.put(OCons.IReturnDate,System.currentTimeMillis()+864000000);
+        cv.put(OCons.ITCost,"null");
+        cv.put(OCons.InvoiceNo,1);
+        long l=sb.insert(OCons.ITable,null,cv);
+        if(l>0){
+            Toast.makeText(this, "created rent", Toast.LENGTH_SHORT).show();
         }
 
 
