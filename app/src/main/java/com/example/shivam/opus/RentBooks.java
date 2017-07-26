@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -19,10 +20,15 @@ import android.widget.Toast;
 import com.example.shivam.opus.dbutil.OCons;
 import com.example.shivam.opus.dbutil.OMng;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class RentBooks extends AppCompatActivity {
     EditText e1,e2;
     SQLiteDatabase sb;
     OMng o;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,9 +45,18 @@ public class RentBooks extends AppCompatActivity {
         e1=(EditText)findViewById(R.id.txtbid);
         e2=(EditText)findViewById(R.id.txtmemid);
 
+
+
     }
     public void rentBooks(View v){
-
+        String bid=e1.getText().toString();//bookid
+        String mid=e2.getText().toString();//memberid
+        String b=null;//catid
+        Cursor c=sb.rawQuery("SELECT BCatID FROM Books WHERE BookID=\""+bid+"\"", null);
+        if (c != null && c.moveToFirst()) {
+            b = c.getString(c.getColumnIndex(OCons.BCId));
+            c.close();
+        }
 
 
 
