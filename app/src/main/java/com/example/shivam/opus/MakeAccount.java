@@ -1,12 +1,14 @@
 package com.example.shivam.opus;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.view.WindowManager;
 
 public class MakeAccount extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,11 +20,21 @@ public class MakeAccount extends AppCompatActivity {
         getSupportActionBar().setCustomView(R.layout.custom_ab1);
 
         setContentView(R.layout.activity_make_account);
-        //Use shared preferences to check if this is the first time a user has opened the app on his phone
-        //if true
-            //show the activity
-        //else
-            //jump to log activity
+        SharedPreferences sharedPrefs = getSharedPreferences("myFile", MODE_PRIVATE);
+        SharedPreferences.Editor ed;
+        if(!sharedPrefs.contains("accept")){
+            ed = sharedPrefs.edit();
+            ed.putInt("accept", 2);
+            ed.commit();
+        }
     }
-
+    @Override
+    public void onBackPressed() {
+        return;
+    }
+    public void make(View v){
+       Intent i = new Intent(this, Log.class);
+        startActivity(i);
+        this.finish();
+    }
 }

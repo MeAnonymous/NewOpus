@@ -2,6 +2,7 @@ package com.example.shivam.opus;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Build;
@@ -29,6 +30,8 @@ public class Main extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     OMng o;
     SQLiteDatabase sb;
+    Toast toast;
+    TextView tv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,12 +52,8 @@ public class Main extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-
-
-            o = new OMng(this);
-            sb = o.open();
-
+        o = new OMng(this);
+        sb = o.open();
     }
 
     @Override
@@ -63,7 +62,7 @@ public class Main extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            return;
         }
     }
 
@@ -72,13 +71,23 @@ public class Main extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
+        SharedPreferences sharedPrefs = getSharedPreferences("myFile", MODE_PRIVATE);
         int id = item.getItemId();
         Intent i;
         if(id==R.id.addcat){
-            i = new Intent(this,AddCategory.class);
-            Bundle bundle = ActivityOptionsCompat.makeCustomAnimation(this,
-                    android.R.anim.fade_in, android.R.anim.fade_out).toBundle();
-            startActivity(i, bundle);
+            if(sharedPrefs.getInt("usertype", 0) == 1) {
+                i = new Intent(this, AddCategory.class);
+                Bundle bundle = ActivityOptionsCompat.makeCustomAnimation(this,
+                        android.R.anim.fade_in, android.R.anim.fade_out).toBundle();
+                startActivity(i, bundle);
+            }
+            else{
+                toast = Toast.makeText(this, "You are not authorised", Toast.LENGTH_SHORT);
+                tv = (TextView) toast.getView().findViewById(android.R.id.message);
+                tv.setBackgroundColor(Color.alpha(0));
+                tv.setTextColor(Color.WHITE);
+                toast.show();
+            }
         }
         else if (id == R.id.addbooks) {
             i = new Intent(this,AddBooks.class);
@@ -129,11 +138,19 @@ public class Main extends AppCompatActivity
             startActivity(i, bundle);
 
         } else if (id == R.id.contactcustomer) {
-            i = new Intent(this, ContactCustomer.class);
-            Bundle bundle = ActivityOptionsCompat.makeCustomAnimation(this,
-                    android.R.anim.fade_in, android.R.anim.fade_out).toBundle();
-            startActivity(i, bundle);
-
+            if(sharedPrefs.getInt("usertype", 0) == 1) {
+                i = new Intent(this, ContactCustomer.class);
+                Bundle bundle = ActivityOptionsCompat.makeCustomAnimation(this,
+                        android.R.anim.fade_in, android.R.anim.fade_out).toBundle();
+                startActivity(i, bundle);
+            }
+            else{
+                toast = Toast.makeText(this, "You are not authorised", Toast.LENGTH_SHORT);
+                tv = (TextView) toast.getView().findViewById(android.R.id.message);
+                tv.setBackgroundColor(Color.alpha(0));
+                tv.setTextColor(Color.WHITE);
+                toast.show();
+            }
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
