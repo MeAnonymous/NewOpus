@@ -72,19 +72,21 @@ public class AddBooks extends AppCompatActivity implements AdapterView.OnItemSel
         c.setAdapter(dataAdapter);
 
     }
-
     public void addBooks(View v){
-        String id=e1.getText().toString();
-        String name=e2.getText().toString();
-        String tcopies=e3.getText().toString();
-        String exp[]={OCons.CId};
-        String args[]={label};
-        String b=null;
-      Cursor c=sb.query(OCons.CTable,exp,OCons.CName,args,null,null,null);
+        String id = e1.getText().toString();
+        String name = e2.getText().toString();
+        String tcopies = e3.getText().toString();
+        String exp[] = {OCons.CId};
+        String args[] = {label};
+        String b = null;
+        Cursor c = sb.rawQuery("SELECT CatID FROM Category WHERE CatName=\""+label+"\"", null);
+        //Cursor c = sb.query(OCons.CTable,exp,OCons.CName,args,null,null,null);
         if (c != null && c.moveToFirst()) {
-        b=c.getString(c.getColumnIndex(OCons.CId));
-        c.close();}
-        Toast.makeText(this, "b="+b, Toast.LENGTH_SHORT).show();
+            b = c.getString(c.getColumnIndex(OCons.CId));
+            //Toast.makeText(this, b, Toast.LENGTH_SHORT).show();
+            c.close();
+        }
+        //Toast.makeText(this, "b="+b, Toast.LENGTH_SHORT).show();
         ContentValues cv=new ContentValues();
         cv.put(OCons.BId,id);
         cv.put(OCons.BName,name);
@@ -92,8 +94,8 @@ public class AddBooks extends AppCompatActivity implements AdapterView.OnItemSel
         cv.put(OCons.BRCopies,tcopies);
         cv.put(OCons.BCId,b);
         long l=sb.insert(OCons.BTable,null,cv);
-
-        Toast.makeText(this, "blahblahblah", Toast.LENGTH_SHORT).show();
+        if(l > 0)
+            Toast.makeText(this, "Books added", Toast.LENGTH_SHORT).show();
 
     }
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -125,11 +127,9 @@ public class AddBooks extends AppCompatActivity implements AdapterView.OnItemSel
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
          label = parent.getItemAtPosition(position).toString();
-
         // Showing selected spinner item
         Toast.makeText(parent.getContext(), "You selected: " + label,
                 Toast.LENGTH_LONG).show();
-
     }
 
     @Override

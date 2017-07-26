@@ -48,7 +48,7 @@ public class AddCategory extends AppCompatActivity {
         cv.put(OCons.CName,name);
         long l=sb.insert(OCons.CTable,null,cv);
         if(l>0)
-            Toast.makeText(this, "AddedCategory", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Category added", Toast.LENGTH_SHORT).show();
         //e1.clearComposingText();
     }
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
