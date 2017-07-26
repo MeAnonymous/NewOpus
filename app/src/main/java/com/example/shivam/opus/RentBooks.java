@@ -54,13 +54,26 @@ public class RentBooks extends AppCompatActivity {
         String mid = e2.getText().toString();//memberid
         String b = null;
         int d=0;//BRCopies
+        int flag = 0;
+        String holdId = null;
         Cursor c = sb.rawQuery("SELECT BCatID, RemainingCopies FROM Book, Category WHERE BookID=\"" + bid + "\" AND BCatID=CatID", null);
         if (c != null && c.moveToFirst()) {
             b = c.getString(c.getColumnIndex(OCons.BCId));
             d =  c.getInt(c.getColumnIndex(OCons.BRCopies));
             c.close();
         }
-        if(d>0) {
+        Cursor c1 = sb.rawQuery("SELECT BookId FROM Issue WHERE MemberId=\"" + mid + "\"", null);
+        if (c1 != null && c1.moveToFirst()) {
+            do{
+                holdId = c1.getString(c1.getColumnIndex(OCons.IBId));
+                //Toast.makeText(this, holdId, Toast.LENGTH_SHORT).show();
+                if(holdId.equals(bid))
+                    flag = 1;
+            }while(c1.moveToNext());
+            c1.close();
+        }
+        if(d>0 && flag == 0){
+
         ContentValues cv = new ContentValues();
         cv.put(OCons.IBId, bid);
         cv.put(OCons.IMId, mid);
@@ -77,7 +90,7 @@ public class RentBooks extends AppCompatActivity {
             tv.setTextColor(Color.WHITE);
             toast.show();
             d--;
-            Toast.makeText(this, String.valueOf(d), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, String.valueOf(d), Toast.LENGTH_SHORT).show();
         }
             /*String args[]={bid};
             cv.put(OCons.BRCopies, String.valueOf(d));
@@ -85,11 +98,16 @@ public class RentBooks extends AppCompatActivity {
             if(r>0)
                 Toast.makeText(this, "reduced", Toast.LENGTH_SHORT).show();*/
             sb.execSQL("UPDATE Book SET RemainingCopies=" + d + " WHERE BookID="+bid);
-            Toast.makeText(this, "Updated", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Updated", Toast.LENGTH_SHORT).show();
 
         }
-    else
-        Toast.makeText(this, "Book not available", Toast.LENGTH_SHORT).show();
+        else{
+            toast = Toast.makeText(this, "Book not available", Toast.LENGTH_SHORT);
+            tv = (TextView) toast.getView().findViewById(android.R.id.message);
+            tv.setBackgroundColor(Color.alpha(0));
+            tv.setTextColor(Color.WHITE);
+            toast.show();
+        }
 
     }
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
