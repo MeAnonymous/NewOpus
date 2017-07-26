@@ -53,15 +53,14 @@ public class RentBooks extends AppCompatActivity {
         String bid = e1.getText().toString();//bookid
         String mid = e2.getText().toString();//memberid
         String b = null;
-        int d=0;//catid
-        Cursor c = sb.rawQuery("SELECT BCatID FROM Book WHERE BookID=\"" + bid + "\"", null);
+        int d=0;//BRCopies
+        Cursor c = sb.rawQuery("SELECT BCatID, RemainingCopies FROM Book, Category WHERE BookID=\"" + bid + "\" AND BCatID=CatID", null);
         if (c != null && c.moveToFirst()) {
             b = c.getString(c.getColumnIndex(OCons.BCId));
-            d=  c.getInt(c.getColumnIndex(OCons.BRCopies));
+            d =  c.getInt(c.getColumnIndex(OCons.BRCopies));
             c.close();
         }
-        if(d>=0)//if remaining copies are zero then we can rent else not
-        {
+        if(d>0) {
         ContentValues cv = new ContentValues();
         cv.put(OCons.IBId, bid);
         cv.put(OCons.IMId, mid);
@@ -77,19 +76,21 @@ public class RentBooks extends AppCompatActivity {
             tv.setBackgroundColor(Color.alpha(0));
             tv.setTextColor(Color.WHITE);
             toast.show();
+            d--;
+            Toast.makeText(this, String.valueOf(d), Toast.LENGTH_SHORT).show();
+        }
+            /*String args[]={bid};
+            cv.put(OCons.BRCopies, String.valueOf(d));
+            long r=sb.update(OCons.BTable,cv,"BookID="+bid,null);
+            if(r>0)
+                Toast.makeText(this, "reduced", Toast.LENGTH_SHORT).show();*/
+            sb.execSQL("UPDATE Book SET RemainingCopies=" + d + " WHERE BookID="+bid);
+            Toast.makeText(this, "Updated", Toast.LENGTH_SHORT).show();
 
         }
-        d--;
-            String args[]={bid};
-            cv.put(OCons.BRCopies,d);
-            long r=sb.update(OCons.BTable,cv,OCons.BId+"=?",args);
-            if(r>0)
-                Toast.makeText(this, "reduced", Toast.LENGTH_SHORT).show();
-
-
-    }
     else
-            Toast.makeText(this, "cannot rent the book", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Book not available", Toast.LENGTH_SHORT).show();
+
     }
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public void done(View v){
