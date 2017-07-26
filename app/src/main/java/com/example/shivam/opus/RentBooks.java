@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -17,7 +16,6 @@ import android.text.format.DateFormat;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.shivam.opus.dbutil.OCons;
@@ -31,8 +29,7 @@ public class RentBooks extends AppCompatActivity {
     EditText e1,e2;
     SQLiteDatabase sb;
     OMng o;
-    TextView tv;
-    Toast toast;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,17 +45,19 @@ public class RentBooks extends AppCompatActivity {
         setContentView(R.layout.activity_rent_books);
         e1=(EditText)findViewById(R.id.txtbid);
         e2=(EditText)findViewById(R.id.txtmemid);
+
+
+
     }
     public void rentBooks(View v){
         String bid=e1.getText().toString();//bookid
         String mid=e2.getText().toString();//memberid
         String b=null;//catid
-        Cursor c=sb.rawQuery("SELECT BCatID FROM Book WHERE BookID=\""+bid+"\"", null);
-
+        Cursor c=sb.rawQuery("SELECT BCatID FROM Books WHERE BookID=\""+bid+"\"", null);
         if (c != null && c.moveToFirst()) {
-           b = c.getString(c.getColumnIndex(OCons.BCId));
-           c.close();
-        }
+            b = c.getString(c.getColumnIndex(OCons.BCId));
+           c.close();}
+
 
         ContentValues cv= new ContentValues();
         cv.put(OCons.IBId,bid);
@@ -66,16 +65,17 @@ public class RentBooks extends AppCompatActivity {
         cv.put(OCons.ICID,b);
         cv.put(OCons.IRentDate,System.currentTimeMillis());
         cv.put(OCons.IReturnDate,System.currentTimeMillis()+864000000);
-        cv.put(OCons.ITCost,"100");
+        cv.put(OCons.ITCost,"null");
        
         long l=sb.insert(OCons.ITable,null,cv);
         if(l>0){
-            toast = Toast.makeText(this, "Book rented", Toast.LENGTH_SHORT);
-            tv = (TextView) toast.getView().findViewById(android.R.id.message);
-            tv.setBackgroundColor(Color.alpha(0));
-            tv.setTextColor(Color.WHITE);
-            toast.show();
+            Toast.makeText(this, "created rent", Toast.LENGTH_SHORT).show();
         }
+
+
+
+
+
     }
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public void done(View v){
