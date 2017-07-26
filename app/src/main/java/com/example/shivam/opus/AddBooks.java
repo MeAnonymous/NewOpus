@@ -77,15 +77,20 @@ public class AddBooks extends AppCompatActivity implements AdapterView.OnItemSel
         String id=e1.getText().toString();
         String name=e2.getText().toString();
         String tcopies=e3.getText().toString();
-        String sp=c.getSelectedItem().toString();
-      //  String t="select "+OCons.CId+" from "+OCons.CTable+" where "+OCons.CName+"="+sp;
-       // Cursor c=sb.query()
+        String exp[]={OCons.CId};
+        String args[]={label};
+        String b=null;
+      Cursor c=sb.query(OCons.CTable,exp,OCons.CName,args,null,null,null);
+        if (c != null && c.moveToFirst()) {
+        b=c.getString(c.getColumnIndex(OCons.CId));
+        c.close();}
+        Toast.makeText(this, "b="+b, Toast.LENGTH_SHORT).show();
         ContentValues cv=new ContentValues();
         cv.put(OCons.BId,id);
         cv.put(OCons.BName,name);
         cv.put(OCons.BTCopies,tcopies);
         cv.put(OCons.BRCopies,tcopies);
-       // cv.put(OCons.BCId,t);
+        cv.put(OCons.BCId,b);
         long l=sb.insert(OCons.BTable,null,cv);
 
         Toast.makeText(this, "blahblahblah", Toast.LENGTH_SHORT).show();
