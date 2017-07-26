@@ -22,6 +22,7 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:id="@+id/spcat"
+        android:onClick="spin"
         android:layout_marginTop="20dp"></Spinner>
 
     <android.support.design.widget.TextInputLayout

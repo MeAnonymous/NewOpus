@@ -24,4 +24,5 @@ public class MakeAccount extends AppCompatActivity {
         //else
             //jump to log activity
     }
+
 }
