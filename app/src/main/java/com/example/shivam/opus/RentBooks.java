@@ -57,7 +57,7 @@ public class RentBooks extends AppCompatActivity {
         if (c != null && c.moveToFirst()) {
             b = c.getString(c.getColumnIndex(OCons.BCId));
            c.close();}
-        
+
 
         ContentValues cv= new ContentValues();
         cv.put(OCons.IBId,bid);
@@ -66,7 +66,7 @@ public class RentBooks extends AppCompatActivity {
         cv.put(OCons.IRentDate,System.currentTimeMillis());
         cv.put(OCons.IReturnDate,System.currentTimeMillis()+864000000);
         cv.put(OCons.ITCost,"null");
-        cv.put(OCons.InvoiceNo,1);
+       
         long l=sb.insert(OCons.ITable,null,cv);
         if(l>0){
             Toast.makeText(this, "created rent", Toast.LENGTH_SHORT).show();
