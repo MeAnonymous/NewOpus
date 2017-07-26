@@ -48,8 +48,6 @@ public class AddMembers extends AppCompatActivity  {
         e4 = (EditText) findViewById(R.id.txtaddress);
         e5 = (EditText) findViewById(R.id.txtphone);
         e6 = (EditText) findViewById(R.id.txtdob);
-
-
     }
     public void add(View v){
         String name=e1.getText().toString();
@@ -96,7 +94,4 @@ public class AddMembers extends AppCompatActivity  {
         AlertDialog adb = ad.create();
         adb.show();
     }
-
-
-
 }

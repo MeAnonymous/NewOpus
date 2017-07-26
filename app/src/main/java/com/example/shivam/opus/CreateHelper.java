@@ -46,7 +46,7 @@ public class CreateHelper extends AppCompatActivity {
         o=new OMng(this);
         sb=o.open();
     }
-    public void submit(View v){
+    public void addHelper(View v){
         String id = e1.getText().toString();
         String pass = e2.getText().toString();
         SharedPreferences sharedPrefs = getSharedPreferences("myFile", MODE_PRIVATE);
