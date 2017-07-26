@@ -102,11 +102,20 @@ public class RentBooks extends AppCompatActivity {
 
         }
         else{
-            toast = Toast.makeText(this, "Book not available", Toast.LENGTH_SHORT);
-            tv = (TextView) toast.getView().findViewById(android.R.id.message);
-            tv.setBackgroundColor(Color.alpha(0));
-            tv.setTextColor(Color.WHITE);
-            toast.show();
+            if(flag == 1){
+                toast = Toast.makeText(this, "You've already issued this book", Toast.LENGTH_SHORT);
+                tv = (TextView) toast.getView().findViewById(android.R.id.message);
+                tv.setBackgroundColor(Color.alpha(0));
+                tv.setTextColor(Color.WHITE);
+                toast.show();
+            }
+            else {
+                toast = Toast.makeText(this, "Book not available", Toast.LENGTH_SHORT);
+                tv = (TextView) toast.getView().findViewById(android.R.id.message);
+                tv.setBackgroundColor(Color.alpha(0));
+                tv.setTextColor(Color.WHITE);
+                toast.show();
+            }
         }
 
     }
