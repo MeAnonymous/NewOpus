@@ -30,13 +30,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".MakeAccount" />
-        <activity android:name=".AddCategory"/>
+        <activity android:name=".AddCategory" />
         <activity android:name=".AddBooks" />
         <activity
             android:name=".Main"
-            android:label="@string/title_activity_main">
-
-        </activity>
+            android:label="@string/title_activity_main"></activity>
         <activity android:name=".UpdateBooks" />
         <activity android:name=".DeleteBooks" />
         <activity android:name=".SearchBooks" />
@@ -45,7 +43,8 @@
         <activity android:name=".DeleteMembers" />
         <activity android:name=".CreateHelper" />
         <activity android:name=".ContactCustomer" />
-        <activity android:name=".RentBooks"></activity>
+        <activity android:name=".RentBooks" />
+        <activity android:name=".ReturnBooks"></activity>
     </application>
 
 </manifest>
