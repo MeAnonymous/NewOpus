@@ -32,6 +32,7 @@ public class Main extends AppCompatActivity
     SQLiteDatabase sb;
     Toast toast;
     TextView tv;
+    SharedPreferences sharedPrefs = getSharedPreferences("myFile", MODE_PRIVATE);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +72,7 @@ public class Main extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        SharedPreferences sharedPrefs = getSharedPreferences("myFile", MODE_PRIVATE);
+
         int id = item.getItemId();
         Intent i;
         if(id==R.id.addcat){
@@ -215,11 +216,20 @@ public class Main extends AppCompatActivity
         startActivity(i, bundle);
     }
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public void addMembers(View v){
-        Intent i = new Intent(this, AddMembers.class);
-        Bundle bundle = ActivityOptionsCompat.makeCustomAnimation(this,
-                android.R.anim.fade_in, android.R.anim.fade_out).toBundle();
-        startActivity(i, bundle);
+    public void rentedBooks(View v){
+        if(sharedPrefs.getInt("usertype", 0) == 1) {
+            Intent i = new Intent(this, RentedBooks.class);
+            Bundle bundle = ActivityOptionsCompat.makeCustomAnimation(this,
+                    android.R.anim.fade_in, android.R.anim.fade_out).toBundle();
+            startActivity(i, bundle);
+        }
+        else{
+            toast = Toast.makeText(this, "You are not authorised", Toast.LENGTH_SHORT);
+            tv = (TextView) toast.getView().findViewById(android.R.id.message);
+            tv.setBackgroundColor(Color.alpha(0));
+            tv.setTextColor(Color.WHITE);
+            toast.show();
+        }
     }
     /*Wanna use a toast somewhere? Just copy all the lines below and replace "Logout" with your message.
     Toast toast = Toast.makeText(this, "Logout", Toast.LENGTH_SHORT);
