@@ -3,6 +3,7 @@ package com.example.shivam.opus;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -13,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -24,12 +26,12 @@ import com.example.shivam.opus.dbutil.OMng;
 
 import java.util.List;
 
-public class AddBooks extends AppCompatActivity {
+public class AddBooks extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     SQLiteDatabase sb;
     OMng o;
     EditText e1,e2,e3;
-    //Spinner c;
-
+    Spinner c;
+    String label
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,29 +49,37 @@ public class AddBooks extends AppCompatActivity {
         e1=(EditText)findViewById(R.id.txtbid);
         e2=(EditText)findViewById(R.id.txtbname);
         e3=(EditText)findViewById(R.id.txttcopy);
-       // c=(Spinner)findViewById(R.id.spcat);
+        c=(Spinner)findViewById(R.id.spcat);
+        c.setOnItemSelectedListener(this);
+        loadSpinnerData();
 
     }
-  /*  public void spin(View v){
-       OHelp db= new OHelp(getApplicationContext(), OCons.DB_Name,null,OCons.DB_Version);
-        List<String> labels = db.getAllLabels();
+    public void loadSpinnerData(){
+        OHelp db = new OHelp(getApplicationContext(),OCons.DB_Name,null,OCons.DB_Version);
+
+        // Spinner Drop down elements
+        List<String> lables = db.getAllLabels();
 
         // Creating adapter for spinner
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, labels);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, lables);
 
         // Drop down layout style - list view with radio button
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dataAdapter
+                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         // attaching data adapter to spinner
         c.setAdapter(dataAdapter);
 
-    }*/
+    }
+
     public void addBooks(View v){
         String id=e1.getText().toString();
         String name=e2.getText().toString();
         String tcopies=e3.getText().toString();
-       // String sp=c.getSelectedItem().toString();
-       // String t="select "+OCons.CId+" from "+OCons.CTable+" where "+OCons.CName+"="+sp;
+        String sp=c.getSelectedItem().toString();
+      //  String t="select "+OCons.CId+" from "+OCons.CTable+" where "+OCons.CName+"="+sp;
+       // Cursor c=sb.query()
         ContentValues cv=new ContentValues();
         cv.put(OCons.BId,id);
         cv.put(OCons.BName,name);
@@ -105,5 +115,20 @@ public class AddBooks extends AppCompatActivity {
         ad.setNegativeButton("No", null);
         AlertDialog adb = ad.create();
         adb.show();
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+         label = parent.getItemAtPosition(position).toString();
+
+        // Showing selected spinner item
+        Toast.makeText(parent.getContext(), "You selected: " + label,
+                Toast.LENGTH_LONG).show();
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

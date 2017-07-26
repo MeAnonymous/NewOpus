@@ -2,6 +2,8 @@ package com.example.shivam.opus;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -11,9 +13,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.example.shivam.opus.dbutil.OCons;
+import com.example.shivam.opus.dbutil.OMng;
 
 public class RentBooks extends AppCompatActivity {
-
+    EditText e1,e2;
+    SQLiteDatabase sb;
+    OMng o;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,8 +32,21 @@ public class RentBooks extends AppCompatActivity {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         //To really display our own custom_bar
         getSupportActionBar().setCustomView(R.layout.custom_ab);
+        o=new OMng(this);
+        sb=o.open();
 
         setContentView(R.layout.activity_rent_books);
+        e1=(EditText)findViewById(R.id.txtbid);
+        e2=(EditText)findViewById(R.id.txtmemid);
+
+    }
+    public void rentBooks(View v){
+
+
+
+
+
+
     }
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public void done(View v){
