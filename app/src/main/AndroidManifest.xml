@@ -34,7 +34,7 @@
         <activity android:name=".AddBooks" />
         <activity
             android:name=".Main"
-            android:label="@string/title_activity_main"></activity>
+            android:label="@string/title_activity_main" />
         <activity android:name=".UpdateBooks" />
         <activity android:name=".DeleteBooks" />
         <activity android:name=".SearchBooks" />
@@ -44,7 +44,8 @@
         <activity android:name=".CreateHelper" />
         <activity android:name=".ContactCustomer" />
         <activity android:name=".RentBooks" />
-        <activity android:name=".ReturnBooks"></activity>
+        <activity android:name=".ReturnBooks" />
+        <activity android:name=".RentedBooks"></activity>
     </application>
 
 </manifest>
