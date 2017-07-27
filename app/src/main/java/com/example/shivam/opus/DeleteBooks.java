@@ -2,6 +2,7 @@ package com.example.shivam.opus;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -11,8 +12,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.example.shivam.opus.dbutil.OCons;
+import com.example.shivam.opus.dbutil.OMng;
 
 public class DeleteBooks extends AppCompatActivity {
+    EditText e1,e2;
+    OMng o;
+    SQLiteDatabase sb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +34,24 @@ public class DeleteBooks extends AppCompatActivity {
         getSupportActionBar().setCustomView(R.layout.custom_ab);
 
         setContentView(R.layout.activity_delete_books);
+        o=new OMng(this);
+        sb=o.open();
+        e1=(EditText)findViewById(R.id.txtbid);
+
     }
+    public void delBooks(View v){
+        String id=e1.getText().toString();
+       String args[]={id};
+        int r=sb.delete(OCons.BTable,OCons.BId+"=?",args);
+        if(r>0)
+
+        Toast.makeText(this, "BOOK DELETED", Toast.LENGTH_SHORT).show();
+
+
+
+
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public void done(View v){
         Intent i=new Intent(this,Main.class);

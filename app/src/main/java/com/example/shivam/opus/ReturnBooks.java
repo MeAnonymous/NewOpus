@@ -41,13 +41,16 @@ public class ReturnBooks extends AppCompatActivity {
         e2=(EditText)findViewById(R.id.txtmemid);
         t1=(TextView)findViewById(R.id.lbinvoice);
         t2=(TextView)findViewById(R.id.lbtotalcost);
+        o=new OMng(this);
+        sb=o.open();
     }
     public void returnBooks(View v){
         String bid=e1.getText().toString();
         String mid=e2.getText().toString();
-        Cursor c=sb.rawQuery("SEARCH DateOfReturn FROM Issue WHERE MemberId=\""+mid+"\"",null);
+       Cursor c=sb.rawQuery("SEARCH DateOfReturn FROM Issue WHERE MemberId=\""+mid+"\"",null);
+
         if (c != null && c.moveToFirst()) {
-            
+            Toast.makeText(this, "nfdnndndjnfj", Toast.LENGTH_SHORT).show();
             c.close();
         }
     }

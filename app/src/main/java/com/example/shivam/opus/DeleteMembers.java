@@ -2,6 +2,7 @@ package com.example.shivam.opus;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -11,8 +12,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.example.shivam.opus.dbutil.OCons;
+import com.example.shivam.opus.dbutil.OMng;
 
 public class DeleteMembers extends AppCompatActivity {
+    OMng o;
+    SQLiteDatabase sb;
+    EditText e;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +35,21 @@ public class DeleteMembers extends AppCompatActivity {
         getSupportActionBar().setCustomView(R.layout.custom_ab);
 
         setContentView(R.layout.activity_delete_members);
+        o=new OMng(this);
+        sb=o.open();
+        e=(EditText)findViewById(R.id.txtmemid);
+
+
+    }
+    public void delete(View v){
+        String id=e.getText().toString();
+        String args[]={id};
+        int r=sb.delete(OCons.MTable,OCons.MId+"=?",args);
+        if(r>0){
+            Toast.makeText(this, "DELETED", Toast.LENGTH_SHORT).show();
+        }
+
+
     }
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public void done(View v){
