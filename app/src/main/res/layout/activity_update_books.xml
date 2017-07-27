@@ -22,14 +22,14 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:id="@+id/spcat"
-        android:layout_marginTop="50dp"></Spinner>
+        android:layout_marginTop="25dp"></Spinner>
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        >
+        android:layout_marginTop="20dp">
 
         <EditText
             android:id="@+id/txtbid"
@@ -67,7 +67,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:gravity="center"
-            android:hint="Enter total copies"
+            android:hint="No. of copies"
             android:inputType="number" />
     </android.support.design.widget.TextInputLayout>
 

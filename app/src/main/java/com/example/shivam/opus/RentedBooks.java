@@ -73,7 +73,7 @@ public class RentedBooks extends AppCompatActivity {
         lv.setAdapter(ad);
     }
     public void fillList0(){
-        Cursor c = sb.rawQuery("SELECT InvoiceNo, DateOfRent, BookName FROM Issue, Book WHERE Issue.BookId=Book.BookID", null);
+        Cursor c = sb.rawQuery("SELECT InvoiceNo, DateOfRent, BookName FROM Issue, Book WHERE Issue.BookId=Book.BookID ORDER BY DateOfRent", null);
         if (c != null && c.moveToFirst()){
             do{
                 String name = c.getString(c.getColumnIndex(OCons.BName));
@@ -90,7 +90,7 @@ public class RentedBooks extends AppCompatActivity {
         }
     }
     public void fillList1(){
-        Cursor c = sb.rawQuery("SELECT MemberId, InvoiceNo, BookName FROM Issue, Book WHERE Issue.BookId=Book.BookID", null);
+        Cursor c = sb.rawQuery("SELECT MemberId, InvoiceNo, BookName FROM Issue, Book WHERE Issue.BookId=Book.BookID ORDER BY MemberId", null);
         if (c != null && c.moveToFirst()){
             do{
                 String name = c.getString(c.getColumnIndex(OCons.BName));

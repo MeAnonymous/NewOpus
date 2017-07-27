@@ -21,7 +21,7 @@
 
     <string name="action_settings">Settings</string>
     <string-array name="search_books">
-        <item>Categoty</item>
+        <item>Category</item>
         <item>Member ID</item>
     </string-array>
     <string-array name="rented_books">

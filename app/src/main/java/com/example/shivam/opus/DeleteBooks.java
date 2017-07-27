@@ -41,15 +41,10 @@ public class DeleteBooks extends AppCompatActivity {
     }
     public void delBooks(View v){
         String id=e1.getText().toString();
-       String args[]={id};
+        String args[]={id};
         int r=sb.delete(OCons.BTable,OCons.BId+"=?",args);
         if(r>0)
-
-        Toast.makeText(this, "BOOK DELETED", Toast.LENGTH_SHORT).show();
-
-
-
-
+            Toast.makeText(this, "BOOK DELETED", Toast.LENGTH_SHORT).show();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)

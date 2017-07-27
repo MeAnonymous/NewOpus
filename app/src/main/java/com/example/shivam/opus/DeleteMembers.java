@@ -38,8 +38,6 @@ public class DeleteMembers extends AppCompatActivity {
         o=new OMng(this);
         sb=o.open();
         e=(EditText)findViewById(R.id.txtmemid);
-
-
     }
     public void delete(View v){
         String id=e.getText().toString();
@@ -48,8 +46,6 @@ public class DeleteMembers extends AppCompatActivity {
         if(r>0){
             Toast.makeText(this, "DELETED", Toast.LENGTH_SHORT).show();
         }
-
-
     }
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public void done(View v){

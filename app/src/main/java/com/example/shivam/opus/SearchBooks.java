@@ -71,8 +71,8 @@ public class SearchBooks extends AppCompatActivity {
         MyAdapter ad = new MyAdapter(this, dist);
         lv.setAdapter(ad);
     }
-    public void fillList0(){
-        Cursor c = sb.rawQuery("SELECT BookName, CatName FROM Book, Category WHERE BCatID=CatID", null);
+    public void fillList0(){//order by category
+        Cursor c = sb.rawQuery("SELECT BookName, CatName FROM Book, Category WHERE BCatID=CatID ORDER BY CatName", null);
         if (c != null && c.moveToFirst()){
             do{
                 String name = c.getString(c.getColumnIndex(OCons.BName));
@@ -84,8 +84,8 @@ public class SearchBooks extends AppCompatActivity {
             }while(c.moveToNext());
         }
     }
-    public void fillList1(){
-        Cursor c = sb.rawQuery("SELECT MemberId, BookName FROM Issue, Book WHERE Issue.BookId=Book.BookID", null);
+    public void fillList1(){//order by memID
+        Cursor c = sb.rawQuery("SELECT MemberId, BookName FROM Issue, Book WHERE Issue.BookId=Book.BookID ORDER BY MemberId", null);
         if (c != null && c.moveToFirst()){
             do{
                 String name = c.getString(c.getColumnIndex(OCons.BName));
