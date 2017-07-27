@@ -22,13 +22,14 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:id="@+id/spcat"
-        android:layout_marginTop="20dp"></Spinner>
+        android:layout_marginTop="50dp"></Spinner>
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:gravity="center">
+        android:gravity="center"
+        >
 
         <EditText
             android:id="@+id/txtbid"
@@ -51,7 +52,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:gravity="center"
-            android:hint="-------"
+            android:hint="Enter book name"
             android:inputType="text" />
     </android.support.design.widget.TextInputLayout>
     <android.support.design.widget.TextInputLayout
@@ -66,24 +67,10 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:gravity="center"
-            android:hint="-------"
+            android:hint="Enter total copies"
             android:inputType="number" />
     </android.support.design.widget.TextInputLayout>
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center">
 
-        <EditText
-            android:id="@+id/txtrcopy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="-------"
-            android:inputType="number" />
-    </android.support.design.widget.TextInputLayout>
 
     <ImageButton
         android:layout_width="60dp"

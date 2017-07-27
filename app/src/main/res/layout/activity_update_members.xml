@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:gravity="center"
-            android:hint="-------"
+            android:hint="Enter name"
             android:inputType="text" />
     </android.support.design.widget.TextInputLayout>
 
@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:gravity="center"
-            android:hint="-------"
+            android:hint="Enter email"
             android:inputType="textEmailAddress" />
     </android.support.design.widget.TextInputLayout>
 
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:gravity="center"
-            android:hint="-------"
+            android:hint="Enter address"
             android:inputType="text" />
     </android.support.design.widget.TextInputLayout>
 
@@ -86,7 +86,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:gravity="center"
-            android:hint="-------"
+            android:hint="Enter phone no."
             android:inputType="number" />
     </android.support.design.widget.TextInputLayout>
     <android.support.design.widget.TextInputLayout
@@ -100,7 +100,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:gravity="center"
-            android:hint="-------"
+            android:hint="Enter DOB"
             android:inputType="date" />
     </android.support.design.widget.TextInputLayout>
     <ImageButton
