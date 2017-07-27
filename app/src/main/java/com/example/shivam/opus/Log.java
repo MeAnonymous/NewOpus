@@ -43,7 +43,8 @@ public class Log extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-        return;
+
+        this.finish();
     }
     public void submit(View v){
         String id = e1.getText().toString();

@@ -45,7 +45,21 @@
             android:onClick="search" />
 
     </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:layout_alignParentLeft="true"
+            android:gravity="left"
+            android:textColor="#787878"
+            android:textSize="16dp"
+            android:layout_marginLeft="15dp"/>
+    </RelativeLayout>
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
