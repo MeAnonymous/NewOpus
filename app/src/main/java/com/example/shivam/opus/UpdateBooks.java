@@ -91,7 +91,7 @@ public class UpdateBooks extends AppCompatActivity implements Spinner.OnItemSele
 
         }
         int newTotal=total+existT;
-        int newRemain=newTotal+existR;
+        int newRemain=total+existR;
         String newT=String.valueOf(newTotal);
         String newR=String.valueOf(newRemain);
         Toast.makeText(this, "original total="+existT+" original remaining="+existR, Toast.LENGTH_SHORT).show();
