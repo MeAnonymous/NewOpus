@@ -68,7 +68,7 @@
             android:ems="10"
             android:gravity="center"
             android:hint="Enter total copies"
-            android:inputType="number" />
+            android:inputType="numberSigned" />
     </android.support.design.widget.TextInputLayout>
 
 
