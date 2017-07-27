@@ -2,6 +2,8 @@ package com.example.shivam.opus;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -11,9 +13,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.Spinner;
+
+import com.example.shivam.opus.dbutil.OCons;
+import com.example.shivam.opus.dbutil.OMng;
+
+import java.util.ArrayList;
 
 public class SearchBooks extends AppCompatActivity {
-
+    ListView lv;
+    ArrayList<Book> dist;
+    OMng o;
+    SQLiteDatabase sb;
+    Book d;
+    Spinner sp;
+    int select = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +41,63 @@ public class SearchBooks extends AppCompatActivity {
         getSupportActionBar().setCustomView(R.layout.custom_ab);
 
         setContentView(R.layout.activity_search_books);
+        o=new OMng(this);
+        sb=o.open();
+        lv=(ListView)findViewById(R.id.lv);
+        dist = new ArrayList<Book>();
+        sp = (Spinner)findViewById(R.id.sp);
+        sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(position == 0) select = 0;
+                if(position == 1) select = 1;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
+    public void search(View v){
+        if(select == 0) {
+            dist.clear();
+            fillList0();
+        }
+        if(select == 1) {
+            dist.clear();
+            fillList1();
+        }
+        MyAdapter ad = new MyAdapter(this, dist);
+        lv.setAdapter(ad);
+    }
+    public void fillList0(){
+        Cursor c = sb.rawQuery("SELECT BookName, CatName FROM Book, Category WHERE BCatID=CatID", null);
+        if (c != null && c.moveToFirst()){
+            do{
+                String name = c.getString(c.getColumnIndex(OCons.BName));
+                String cid = c.getString(c.getColumnIndex(OCons.CName));
+                d = new Book();
+                d.setCid(cid);
+                d.setName(name);
+                dist.add(d);
+            }while(c.moveToNext());
+        }
+    }
+    public void fillList1(){
+        Cursor c = sb.rawQuery("SELECT MemberId, BookName FROM Issue, Book WHERE Issue.BookId=Book.BookID", null);
+        if (c != null && c.moveToFirst()){
+            do{
+                String name = c.getString(c.getColumnIndex(OCons.BName));
+                String cid = c.getString(c.getColumnIndex(OCons.IMId));
+                d = new Book();
+                d.setCid(cid);
+                d.setName(name);
+                dist.add(d);
+            }while(c.moveToNext());
+        }
+    }
+
     public void logout(View v){
         AlertDialog.Builder ad = new AlertDialog.Builder(this);
         ad.setTitle("Do you want to logout?");
