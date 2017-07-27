@@ -28,4 +28,8 @@
         <item>Date</item>
         <item>Member ID</item>
     </string-array>
+    <string-array name="info">
+        <item>Books</item>
+        <item>Members</item>
+    </string-array>
 </resources>

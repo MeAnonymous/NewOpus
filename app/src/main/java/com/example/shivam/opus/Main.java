@@ -107,8 +107,8 @@ public class Main extends AppCompatActivity
                     android.R.anim.fade_in, android.R.anim.fade_out).toBundle();
             startActivity(i, bundle);
 
-        } else if (id == R.id.searchbooks) {
-            i = new Intent(this,SearchBooks.class);
+        } else if (id == R.id.viewinfo) {
+            i = new Intent(this,ViewInfo.class);
             Bundle bundle = ActivityOptionsCompat.makeCustomAnimation(this,
                     android.R.anim.fade_in, android.R.anim.fade_out).toBundle();
             startActivity(i, bundle);

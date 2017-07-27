@@ -3,6 +3,7 @@ package com.example.shivam.opus;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -13,6 +14,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.shivam.opus.dbutil.OCons;
@@ -22,7 +24,8 @@ public class DeleteMembers extends AppCompatActivity {
     OMng o;
     SQLiteDatabase sb;
     EditText e;
-
+    Toast toast;
+    TextView tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +47,11 @@ public class DeleteMembers extends AppCompatActivity {
         String args[]={id};
         int r=sb.delete(OCons.MTable,OCons.MId+"=?",args);
         if(r>0){
-            Toast.makeText(this, "DELETED", Toast.LENGTH_SHORT).show();
+            toast = Toast.makeText(this, "Member deleted", Toast.LENGTH_SHORT);
+            tv = (TextView) toast.getView().findViewById(android.R.id.message);
+            tv.setBackgroundColor(Color.alpha(0));
+            tv.setTextColor(Color.WHITE);
+            toast.show();
         }
     }
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)

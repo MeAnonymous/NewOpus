@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -18,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.shivam.opus.dbutil.OCons;
@@ -32,6 +34,9 @@ public class AddBooks extends AppCompatActivity implements AdapterView.OnItemSel
     EditText e1,e2,e3;
     Spinner c;
     String label;
+    Toast toast;
+    TextView tv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,8 +99,13 @@ public class AddBooks extends AppCompatActivity implements AdapterView.OnItemSel
         cv.put(OCons.BRCopies,tcopies);
         cv.put(OCons.BCId,b);
         long l=sb.insert(OCons.BTable,null,cv);
-        if(l > 0)
-            Toast.makeText(this, "Books added", Toast.LENGTH_SHORT).show();
+        if(l > 0) {
+            toast = Toast.makeText(this, "Books added", Toast.LENGTH_SHORT);
+            tv = (TextView) toast.getView().findViewById(android.R.id.message);
+            tv.setBackgroundColor(Color.alpha(0));
+            tv.setTextColor(Color.WHITE);
+            toast.show();
+        }
 
     }
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -128,8 +138,8 @@ public class AddBooks extends AppCompatActivity implements AdapterView.OnItemSel
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
          label = parent.getItemAtPosition(position).toString();
         // Showing selected spinner item
-        Toast.makeText(parent.getContext(), "You selected: " + label,
-                Toast.LENGTH_LONG).show();
+        //Toast.makeText(parent.getContext(), "You selected: " + label,
+          //      Toast.LENGTH_LONG).show();
     }
 
     @Override

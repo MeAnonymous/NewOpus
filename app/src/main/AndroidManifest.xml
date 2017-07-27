@@ -45,7 +45,8 @@
         <activity android:name=".ContactCustomer" />
         <activity android:name=".RentBooks" />
         <activity android:name=".ReturnBooks" />
-        <activity android:name=".RentedBooks"></activity>
+        <activity android:name=".RentedBooks" />
+        <activity android:name=".ViewInfo"></activity>
     </application>
 
 </manifest>

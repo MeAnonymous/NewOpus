@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -14,6 +15,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.shivam.opus.dbutil.OCons;
@@ -23,6 +25,8 @@ public class UpdateMembers extends AppCompatActivity {
     OMng o;
     SQLiteDatabase sb;
     EditText e1,e2,e3,e4,e5,e6;
+    Toast toast;
+    TextView tv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,8 +63,13 @@ public class UpdateMembers extends AppCompatActivity {
         cv.put(OCons.MDob,dob);
         String args[]={id};
         int r=sb.update(OCons.MTable,cv,OCons.MId+"=?",args);
-        if(r>0)
-            Toast.makeText(this, "Updated", Toast.LENGTH_SHORT).show();
+        if(r>0) {
+            toast = Toast.makeText(this, "Updated", Toast.LENGTH_SHORT);
+            tv = (TextView) toast.getView().findViewById(android.R.id.message);
+            tv.setBackgroundColor(Color.alpha(0));
+            tv.setTextColor(Color.WHITE);
+            toast.show();
+        }
 
     }
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)

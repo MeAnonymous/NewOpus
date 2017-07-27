@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -18,11 +19,14 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.shivam.opus.dbutil.OCons;
 import com.example.shivam.opus.dbutil.OHelp;
 import com.example.shivam.opus.dbutil.OMng;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -33,6 +37,8 @@ public class UpdateBooks extends AppCompatActivity implements Spinner.OnItemSele
     Spinner c;
     String label;
     EditText e1,e2,e3;
+    Toast toast;
+    TextView tv;
     @Override
     protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
@@ -94,8 +100,8 @@ public class UpdateBooks extends AppCompatActivity implements Spinner.OnItemSele
         int newRemain=total+existR;
         String newT=String.valueOf(newTotal);
         String newR=String.valueOf(newRemain);
-        Toast.makeText(this, "original total="+existT+" original remaining="+existR, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, "New Total="+newT+" new Remain="+newR, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "original total="+existT+" original remaining="+existR, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "New Total="+newT+" new Remain="+newR, Toast.LENGTH_SHORT).show();
 
        Cursor c1 = sb.rawQuery("SELECT CatID FROM Category WHERE CatName=\""+label+"\"", null);
         //Cursor c = sb.query(OCons.CTable,exp,OCons.CName,args,null,null,null);
@@ -110,8 +116,13 @@ public class UpdateBooks extends AppCompatActivity implements Spinner.OnItemSele
         cv.put(OCons.BRCopies,newR);
         cv.put(OCons.BCId,b);
         long l=sb.update(OCons.BTable,cv,OCons.BId+"=?",ar);
-        if(l>0)
-            Toast.makeText(this, "Updated", Toast.LENGTH_SHORT).show();
+        if(l>0) {
+            toast = Toast.makeText(this, "Updated", Toast.LENGTH_SHORT);
+            tv = (TextView) toast.getView().findViewById(android.R.id.message);
+            tv.setBackgroundColor(Color.alpha(0));
+            tv.setTextColor(Color.WHITE);
+            toast.show();
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -143,8 +154,7 @@ public class UpdateBooks extends AppCompatActivity implements Spinner.OnItemSele
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         label = parent.getItemAtPosition(position).toString();
         // Showing selected spinner item
-        Toast.makeText(parent.getContext(), "You selected: " + label,
-                Toast.LENGTH_LONG).show();
+        //Toast.makeText(parent.getContext(), "You selected: " + label, Toast.LENGTH_LONG).show();
     }
 
     @Override

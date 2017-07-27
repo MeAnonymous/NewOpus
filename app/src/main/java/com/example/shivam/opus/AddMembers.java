@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -15,19 +16,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.shivam.opus.dbutil.OCons;
 import com.example.shivam.opus.dbutil.OMng;
-
-
 
 public class AddMembers extends AppCompatActivity  {
 
     OMng o;
     SQLiteDatabase sb;
     EditText e1,e2,e3,e4,e5,e6;
-
+    Toast toast;
+    TextView tv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,8 +67,13 @@ public class AddMembers extends AppCompatActivity  {
         cv.put(OCons.MDob,dob);
         cv.put(OCons.MFee,fee);
         long l=sb.insert(OCons.MTable,null,cv);
-        if(l>0)
-            Toast.makeText(this, "Member Added", Toast.LENGTH_SHORT).show();
+        if(l>0) {
+            toast = Toast.makeText(this, "Member Added", Toast.LENGTH_SHORT);
+            tv = (TextView) toast.getView().findViewById(android.R.id.message);
+            tv.setBackgroundColor(Color.alpha(0));
+            tv.setTextColor(Color.WHITE);
+            toast.show();
+        }
     }
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public void done(View v){

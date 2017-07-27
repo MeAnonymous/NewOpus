@@ -21,9 +21,9 @@
             android:title="Delete Books" />
 
         <item
-            android:id="@+id/searchbooks"
+            android:id="@+id/viewinfo"
             android:icon="@drawable/ic_search_black_24dp"
-            android:title="Search Books" />
+            android:title="View Information" />
         <item
             android:id="@+id/addmembers"
             android:icon="@drawable/ic_add_circle_black_24dp"

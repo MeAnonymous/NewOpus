@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -14,6 +15,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.shivam.opus.dbutil.OCons;
@@ -23,6 +25,8 @@ public class AddCategory extends AppCompatActivity {
     EditText e1,e2;
     OMng o;
     SQLiteDatabase sb;
+    Toast toast;
+    TextView tv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,8 +51,13 @@ public class AddCategory extends AppCompatActivity {
         cv.put(OCons.CId,id);
         cv.put(OCons.CName,name);
         long l=sb.insert(OCons.CTable,null,cv);
-        if(l>0)
-            Toast.makeText(this, "Category added", Toast.LENGTH_SHORT).show();
+        if(l>0) {
+            toast = Toast.makeText(this, "Category added", Toast.LENGTH_SHORT);
+            TextView tv = (TextView) toast.getView().findViewById(android.R.id.message);
+            tv.setBackgroundColor(Color.alpha(0));
+            tv.setTextColor(Color.WHITE);
+            toast.show();
+        }
 
     }
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
